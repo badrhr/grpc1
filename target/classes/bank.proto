@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "org.emsi.stubs" ;
+service BankService{
+  rpc convert(ConvertCurrencyRequest) returns (ConvertCurrencyResponse); //Unary Model
+  rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); //Server Streaming Model
+  rpc performStream(stream ConvertCurrencyRequest) returns ( ConvertCurrencyResponse); //Client Streaming Model
+  rpc fullCurrencyStream(stream ConvertCurrencyRequest) returns ( stream ConvertCurrencyResponse); //Bidirectional Streaming Model
+}
+
+message ConvertCurrencyRequest{
+  string currencyFrom = 1 ;
+  double amount = 2 ;
+  string currencyTo = 3 ;
+}
+
+message ConvertCurrencyResponse{
+  string currencyFrom = 1 ;
+  double amount = 2 ;
+  string currencyTo = 3 ;
+  double result = 4 ;
+}
